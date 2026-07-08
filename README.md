@@ -1,3 +1,48 @@
+# Linear Algebra: Purchase Recommendation
+*[Versión en español abajo](#versión-en-español) · Read in English below*
+
+Applying matrix multiplication to a real decision problem: **which store minimizes each customer's total spend?**
+
+## Problem
+
+Three customers (Rafa, Pedro, María) each need different quantities of four bakery products (palmeras, donuts, hojaldres, tartas). Two stores — Manolo Bakes and Starbucks — offer different prices for each product. The goal is to compute how much each customer would spend at each store and recommend the cheaper option.
+
+## Approach
+
+The problem maps naturally onto a matrix product:
+
+- **Matrix A** (3×4): quantity of each product per customer.
+- **Matrix B** (4×2): price of each product at each store.
+- **A · B** (3×2): total spend per customer at each store.
+
+```python
+resultado = A @ B
+```
+
+The resulting matrix is loaded into a pandas DataFrame (customers as rows, stores as columns). For each customer, `idxmin()` returns the store with the lowest total spend and `min()` the amount, producing an automated recommendation.
+
+## Key results
+
+- **Rafa → Starbucks** (saves 1 €).
+- **Pedro → Manolo Bakes** (saves 2.5 €). The difference is driven by tartas: Pedro buys two, and they are more expensive at Starbucks.
+- **María → tie** (same spend at both). Recommendation falls back to non-price criteria (product quality, convenience).
+
+## Why this matters
+
+The exercise shows how a core linear algebra operation — the matrix product — encodes a "quantities × prices" business calculation, and how the raw numeric output becomes an actionable recommendation once framed correctly. The tie case is a reminder that when the data doesn't decide, the analyst still has to.
+
+## Tools
+
+Python · NumPy · pandas
+
+## Context
+
+Deliverable for the *Mathematics for Data Processing* module of my Master's in Business Intelligence & Analytics. Notebook and write-up are in Spanish.
+
+_________________________________________________________________________________________________________________________________________________________________
+
+## Versión en español
+
 # matematica_analitica
 Caso práctico de álgebra lineal aplicada: cálculo de gasto y recomendación de compra mediante producto de matrices en Python.
 
